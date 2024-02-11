@@ -64,3 +64,35 @@ let info: {
         }
     }
 }
+
+
+// arrays
+
+const skills: string[] = ['Dev', 'DevOps', 'Testing'];
+
+for (const skill of skills) {
+    console.log(skill.toLowerCase());
+}
+
+const result = skills.filter((s: string) => s !== 'DevOps')
+.map(s => s + '! ')
+.reduce((a, b) => a+b);
+
+// console.log(result);
+
+
+// tuples
+
+const skill: [number, string] = [1, 'Dev'];
+// const id = skill[0];
+// const skillname = skill[1];
+
+const [id, skillName] = skill;
+
+const arr: [number, string, ...boolean[]] = [1, 'abc', true, true, false]
+
+// readonly
+
+const lang: readonly [number, string] = [1, 'ru'];
+
+const langs: ReadonlyArray<string> = ['ru', 'en'];
