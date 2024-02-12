@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 const a = 1;
 let revenue = 1000;
 let bonus = 500;
@@ -59,3 +68,81 @@ const arr = [1, 'abc', true, true, false];
 // readonly
 const lang = [1, 'ru'];
 const langs = ['ru', 'en'];
+// enums
+var StatusCode;
+(function (StatusCode) {
+    StatusCode[StatusCode["SUCCESS"] = 1] = "SUCCESS";
+    StatusCode[StatusCode["IN_PROCESS"] = 2] = "IN_PROCESS";
+    StatusCode[StatusCode["FAILED"] = 3] = "FAILED";
+})(StatusCode || (StatusCode = {}));
+// 1 - success
+// 2 - in process
+// 3 - failed
+const response = {
+    message: 'successful payment',
+    statusCode: StatusCode.SUCCESS
+};
+function action(status) {
+}
+action(StatusCode.SUCCESS);
+action(StatusCode.FAILED);
+const response2 = 1 /* Roles.ADMIN */;
+// func type exercise
+var QuestionStatus;
+(function (QuestionStatus) {
+    QuestionStatus["Published"] = "published";
+    QuestionStatus["Draft"] = "draft";
+    QuestionStatus["Deleted"] = "deleted";
+})(QuestionStatus || (QuestionStatus = {}));
+function getFaqs(req) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield fetch('/faqs', {
+            method: 'POST',
+            body: JSON.stringify(req)
+        });
+        const data = yield res.json();
+        return data;
+    });
+}
+// union
+// function logId(id: string | number | boolean) {
+//     console.log(id);
+// }
+// logId(1);
+// logId('di');
+// logId(true);
+// narrowing!
+function logId(id) {
+    if (typeof id === 'string') {
+        console.log(id);
+    }
+    else if (typeof id === 'number') {
+        console.log(id);
+    }
+    else {
+        console.log(id);
+    }
+}
+function logError(err) {
+    if (Array.isArray(err)) {
+        console.log(err);
+    }
+    else {
+        console.log(err);
+    }
+}
+function logObject(obj) {
+    if ('a' in obj) {
+        console.log(obj.a);
+    }
+    else {
+        console.log(obj.b);
+    }
+}
+function logMultipleIds(a, b) {
+    if (a === b) {
+    }
+    else {
+        console.log(a);
+    }
+}

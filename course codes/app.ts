@@ -96,3 +96,112 @@ const arr: [number, string, ...boolean[]] = [1, 'abc', true, true, false]
 const lang: readonly [number, string] = [1, 'ru'];
 
 const langs: ReadonlyArray<string> = ['ru', 'en'];
+
+
+// enums
+
+enum StatusCode {
+    SUCCESS = 1,
+    IN_PROCESS,
+    FAILED
+}
+
+// 1 - success
+// 2 - in process
+// 3 - failed
+
+const response = {
+    message: 'successful payment',
+    statusCode: StatusCode.SUCCESS
+}
+
+function action(status: StatusCode) {
+
+}
+
+action(StatusCode.SUCCESS);
+action(StatusCode.FAILED);
+
+const enum Roles {
+    ADMIN = 1,
+    USER = ADMIN * 3
+}
+
+const response2 = Roles.ADMIN;
+
+
+// func type exercise
+
+enum QuestionStatus {
+    Published = 'published',
+    Draft = 'draft',
+    Deleted = 'deleted'
+}
+
+async function getFaqs(req: {
+    topicId: number;
+    status: QuestionStatus;
+}): Promise<{
+    question: string;
+    answer: string;
+    tags: string[];
+    likes: number;
+    status: QuestionStatus;
+}[]> {
+    const res = await fetch('/faqs', {
+        method: 'POST',
+        body: JSON.stringify(req)
+    });
+    const data = await res.json();
+    return data;
+}
+
+
+// union
+
+// function logId(id: string | number | boolean) {
+//     console.log(id);
+// }
+
+// logId(1);
+// logId('di');
+// logId(true);
+
+// narrowing!
+
+function logId(id: string | number | boolean) {
+    if (typeof id === 'string') {
+        console.log(id);
+    } else if (typeof id === 'number') {
+        console.log(id);
+    } else {
+        console.log(id);
+    }
+}
+
+function logError(err:  string | string[]) {
+    if (Array.isArray(err)) {
+        console.log(err); 
+    }
+    else {
+        console.log(err);
+    }
+}
+
+function logObject(obj:  {a: number} | {b: number}) {
+    if ('a' in obj) {
+        console.log(obj.a); 
+    }
+    else {
+        console.log(obj.b);
+    }
+}
+
+function logMultipleIds(a: string | number, b: string | boolean) {
+    if (a===b) {
+
+    }
+    else {
+        console.log(a);
+    }
+}
