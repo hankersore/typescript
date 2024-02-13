@@ -205,3 +205,34 @@ function logMultipleIds(a: string | number, b: string | boolean) {
         console.log(a);
     }
 }
+
+
+// type aliases
+
+type httpMethod = 'post' | 'get';
+
+type myString = string;
+
+function fetchWithAuth(url: string, method: httpMethod): 1 | -1 {
+    return 1;
+}
+fetchWithAuth('s', 'post');
+
+type User = {
+    name: string,
+    age: number,
+    skills: string[]
+}
+
+type Role = {
+    id: number;
+}
+
+type UserWithRole = User & Role;
+
+let user1: UserWithRole = {
+    name: 'me',
+    age: 33,
+    skills: ['1', '2'],
+    id: 1
+}

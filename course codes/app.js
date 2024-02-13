@@ -146,3 +146,13 @@ function logMultipleIds(a, b) {
         console.log(a);
     }
 }
+function fetchWithAuth(url, method) {
+    return 1;
+}
+fetchWithAuth('s', 'post');
+let user1 = {
+    name: 'me',
+    age: 33,
+    skills: ['1', '2'],
+    id: 1
+};
