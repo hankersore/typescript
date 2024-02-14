@@ -156,3 +156,20 @@ let user1 = {
     skills: ['1', '2'],
     id: 1
 };
+// literal types
+function fetchWithAuth1(url, method) {
+    return 1;
+}
+fetchWithAuth1('s', 'get');
+let method = 'post';
+fetchWithAuth1('a', method);
+let user2 = {
+    name: 'me',
+    age: 33,
+    skills: ['1', '2'],
+    roleId: 1,
+    createdAt: new Date(),
+    log(id) {
+        return '';
+    }
+};

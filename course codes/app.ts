@@ -236,3 +236,45 @@ let user1: UserWithRole = {
     skills: ['1', '2'],
     id: 1
 }
+
+
+// literal types
+
+function fetchWithAuth1(url: string, method: 'post' | 'get'): 1 | -1 {
+    return 1;
+}
+
+fetchWithAuth1('s', 'get');
+
+let method = 'post';
+
+fetchWithAuth1('a', method as 'post');
+
+
+// interfaces
+
+interface User1  {
+    name: string,
+    age: number,
+    skills: string[],
+    log: (id: number) => string;
+}
+
+interface Role1 {
+    roleId: number;
+}
+
+interface UserWithRole1 extends User1, Role1 {
+    createdAt: Date;
+}
+
+let user2: UserWithRole1 = {
+    name: 'me',
+    age: 33,
+    skills: ['1', '2'],
+    roleId: 1,
+    createdAt: new Date(),
+    log(id) {
+        return '';
+    }
+}
