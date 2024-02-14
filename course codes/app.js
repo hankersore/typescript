@@ -173,3 +173,26 @@ let user2 = {
         return '';
     }
 };
+const myuser = {
+    login: 'blabla@com'
+};
+function multiply(first, second) {
+    if (!second) {
+        return first * first;
+    }
+    return first * second;
+}
+function testPass(user) {
+    var _a;
+    const t = (_a = user.password) === null || _a === void 0 ? void 0 : _a.type;
+}
+// nullish
+function test(param) {
+    const t = param !== null && param !== void 0 ? param : multiply(5);
+    return t;
+}
+var PaymentStatus;
+(function (PaymentStatus) {
+    PaymentStatus["Success"] = "success";
+    PaymentStatus["Failed"] = "failed";
+})(PaymentStatus || (PaymentStatus = {}));

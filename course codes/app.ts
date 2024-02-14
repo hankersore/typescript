@@ -278,3 +278,76 @@ let user2: UserWithRole1 = {
         return '';
     }
 }
+
+// ? for optional values
+
+interface MyUser {
+    login: string;
+    password?: string;
+}
+
+const myuser: MyUser = {
+    login: 'blabla@com'
+}
+
+function multiply(first: number, second?: number): number {
+    if (!second) {
+        return first*first;
+    }
+    return first*second;
+}
+
+// console.log(multiply(4));
+
+// optional chaining
+interface UserPro {
+    login: string;
+    password?: {
+        type: 'primary' | 'secondary';
+    }
+}
+
+function testPass(user: UserPro) {
+    const t = user.password?.type;
+}
+
+// nullish
+
+function test(param?: string) {
+    const t = param ?? multiply(5);
+    return t;
+}
+
+// console.log(test());
+
+// exercise
+
+interface Payment {
+    sum: number;
+    from: 2;
+    to: 4
+}
+
+enum PaymentStatus {
+    Success = 'success',
+    Failed = 'failed',
+}
+interface PaymentReq extends Payment {
+
+}
+interface DataSuccess extends Payment {
+    databaseId: number;
+}
+interface DataFailed {
+    errorMessage: string;
+    errorCode: number;
+}
+interface ResponseSuccess {
+    status: PaymentStatus.Success;
+    data: DataSuccess;
+}
+
+interface ResponseFailed {
+    status: PaymentStatus.Failed;
+    data: DataFailed;
+}
