@@ -1,15 +1,11 @@
-const a = 1;
-
 let revenue: number = 1000;
 let bonus: number = 500;
 let b: string = 'abc';
 let c: boolean = false;
-
 let res: number = revenue + bonus;
 // console.log(res);
 
-
-// types in func
+// TYPES IN FUNCTION
 
 function getFullName(firstname: string, surname: string): string {
     return `${firstname} ${surname}`
@@ -18,11 +14,10 @@ function getFullName(firstname: string, surname: string): string {
 const getFullNameArrow = (firstname: string, surname: string): string => {
     return `${firstname} ${surname}`
 }
-
 // console.log(getFullName('Dilshoda', 'Alimova'));
 
 
-// objects
+// OBJECTS
 
 function getFullName1(userEntity: {firstname: string, surname: string}): string {
     return `${userEntity.firstname} ${userEntity.surname}`
@@ -41,7 +36,7 @@ const user = {
 
 // console.log(getFullName1(user));
 
-// types in obj
+// OBJECT TYPES
 
 let info: {
     officeId: number,
@@ -66,7 +61,7 @@ let info: {
 }
 
 
-// arrays
+// ARRAYS
 
 const skills: string[] = ['Dev', 'DevOps', 'Testing'];
 
@@ -81,31 +76,27 @@ const result = skills.filter((s: string) => s !== 'DevOps')
 // console.log(result);
 
 
-// tuples
+// TUPLES
 
 const skill: [number, string] = [1, 'Dev'];
 // const id = skill[0];
 // const skillname = skill[1];
 
 const [id, skillName] = skill;
-
 const arr: [number, string, ...boolean[]] = [1, 'abc', true, true, false]
 
-// readonly
+// READONLY
 
 const lang: readonly [number, string] = [1, 'ru'];
-
 const langs: ReadonlyArray<string> = ['ru', 'en'];
 
-
-// enums
+// ENUM
 
 enum StatusCode {
     SUCCESS = 1,
     IN_PROCESS,
     FAILED
 }
-
 // 1 - success
 // 2 - in process
 // 3 - failed
@@ -115,9 +106,7 @@ const response = {
     statusCode: StatusCode.SUCCESS
 }
 
-function action(status: StatusCode) {
-
-}
+function action(status: StatusCode) {}
 
 action(StatusCode.SUCCESS);
 action(StatusCode.FAILED);
@@ -128,7 +117,6 @@ const enum Roles {
 }
 
 const response2 = Roles.ADMIN;
-
 
 // func type exercise
 
@@ -156,18 +144,16 @@ async function getFaqs(req: {
     return data;
 }
 
-
-// union
+// UNION
 
 // function logId(id: string | number | boolean) {
 //     console.log(id);
 // }
-
 // logId(1);
 // logId('di');
 // logId(true);
 
-// narrowing!
+// NARROWING!
 
 function logId(id: string | number | boolean) {
     if (typeof id === 'string') {
@@ -198,16 +184,13 @@ function logObject(obj:  {a: number} | {b: number}) {
 }
 
 function logMultipleIds(a: string | number, b: string | boolean) {
-    if (a===b) {
-
-    }
+    if (a===b) {}
     else {
         console.log(a);
     }
 }
 
-
-// type aliases
+// TYPE ALIASES
 
 type httpMethod = 'post' | 'get';
 
@@ -237,8 +220,7 @@ let user1: UserWithRole = {
     id: 1
 }
 
-
-// literal types
+// LITERAL TYPES
 
 function fetchWithAuth1(url: string, method: 'post' | 'get'): 1 | -1 {
     return 1;
@@ -247,12 +229,9 @@ function fetchWithAuth1(url: string, method: 'post' | 'get'): 1 | -1 {
 fetchWithAuth1('s', 'get');
 
 let method = 'post';
-
 fetchWithAuth1('a', method as 'post');
 
-
-// interfaces
-
+// INTERFACES
 interface User1  {
     name: string,
     age: number,
@@ -279,7 +258,7 @@ let user2: UserWithRole1 = {
     }
 }
 
-// ? for optional values
+// ? for optional params
 
 interface MyUser {
     login: string;
@@ -332,9 +311,7 @@ enum PaymentStatus {
     Success = 'success',
     Failed = 'failed',
 }
-interface PaymentReq extends Payment {
-
-}
+interface PaymentReq extends Payment {}
 interface DataSuccess extends Payment {
     databaseId: number;
 }
@@ -346,8 +323,90 @@ interface ResponseSuccess {
     status: PaymentStatus.Success;
     data: DataSuccess;
 }
-
 interface ResponseFailed {
     status: PaymentStatus.Failed;
     data: DataFailed;
+}
+
+// VOID
+// void means func returns nothing (it's not undefined)
+
+type voidFunc = () => void;
+
+const n: voidFunc = () => {
+    return false;
+}
+
+const m: voidFunc = () => {}
+
+// UNKNOWN - we don't know what's inside a variable
+// unknown is not any
+let input: unknown;
+function run(i: unknown) {
+    if (typeof i == 'number') {
+        i++;
+    } else {
+        i
+    }
+}
+run(input);
+
+async function getData() {
+    try {
+        await fetch('');
+    } catch (error) {
+        if (error instanceof Error) {
+            console.log(error.message);
+        }
+    }
+}
+// everything with union type unknown becomes unknown
+type U1 = unknown | number; 
+// type intersection. unknown is broader type so I1 would behave as string
+type I1 = unknown & string;
+
+// NEVER
+
+function generateError(message: string): never {
+    throw new Error(message);
+}
+function isString(x: string | number) : boolean {
+    if (typeof x === 'string') {
+        return true;
+    }
+    else if (typeof x === 'number') {
+        return false;
+    }
+    generateError('abcdefg')
+}
+
+// CASTING
+// overriding types
+
+let a = 5;
+let d : string = a.toString();
+let g: string = new String(a).valueOf();
+
+let e = 'fjfjf';
+let f: number = parseInt(e);
+
+interface SomeUser {
+    name: string;
+    email: string;
+    login: string;
+}
+const user3: SomeUser = {
+    name: 'di',
+    email: 'di@gmail.com',
+    login: 'dii',
+}
+interface Admin {
+    name: string;
+    role: number;
+}
+function userToAdmin(user3: SomeUser): Admin {
+    return {
+        name: user3.name,
+        role: 1
+    }
 }

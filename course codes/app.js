@@ -8,14 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const a = 1;
 let revenue = 1000;
 let bonus = 500;
 let b = 'abc';
 let c = false;
 let res = revenue + bonus;
 // console.log(res);
-// types in func
+// TYPES IN FUNCTION
 function getFullName(firstname, surname) {
     return `${firstname} ${surname}`;
 }
@@ -23,7 +22,7 @@ const getFullNameArrow = (firstname, surname) => {
     return `${firstname} ${surname}`;
 };
 // console.log(getFullName('Dilshoda', 'Alimova'));
-// objects
+// OBJECTS
 function getFullName1(userEntity) {
     return `${userEntity.firstname} ${userEntity.surname}`;
 }
@@ -38,7 +37,7 @@ const user = {
     }
 };
 // console.log(getFullName1(user));
-// types in obj
+// OBJECT TYPES
 let info = {
     "officeId": 45,
     "isOpened": false,
@@ -50,7 +49,7 @@ let info = {
         }
     }
 };
-// arrays
+// ARRAYS
 const skills = ['Dev', 'DevOps', 'Testing'];
 for (const skill of skills) {
     console.log(skill.toLowerCase());
@@ -59,16 +58,16 @@ const result = skills.filter((s) => s !== 'DevOps')
     .map(s => s + '! ')
     .reduce((a, b) => a + b);
 // console.log(result);
-// tuples
+// TUPLES
 const skill = [1, 'Dev'];
 // const id = skill[0];
 // const skillname = skill[1];
 const [id, skillName] = skill;
 const arr = [1, 'abc', true, true, false];
-// readonly
+// READONLY
 const lang = [1, 'ru'];
 const langs = ['ru', 'en'];
-// enums
+// ENUM
 var StatusCode;
 (function (StatusCode) {
     StatusCode[StatusCode["SUCCESS"] = 1] = "SUCCESS";
@@ -82,8 +81,7 @@ const response = {
     message: 'successful payment',
     statusCode: StatusCode.SUCCESS
 };
-function action(status) {
-}
+function action(status) { }
 action(StatusCode.SUCCESS);
 action(StatusCode.FAILED);
 const response2 = 1 /* Roles.ADMIN */;
@@ -104,14 +102,14 @@ function getFaqs(req) {
         return data;
     });
 }
-// union
+// UNION
 // function logId(id: string | number | boolean) {
 //     console.log(id);
 // }
 // logId(1);
 // logId('di');
 // logId(true);
-// narrowing!
+// NARROWING!
 function logId(id) {
     if (typeof id === 'string') {
         console.log(id);
@@ -140,8 +138,7 @@ function logObject(obj) {
     }
 }
 function logMultipleIds(a, b) {
-    if (a === b) {
-    }
+    if (a === b) { }
     else {
         console.log(a);
     }
@@ -156,7 +153,7 @@ let user1 = {
     skills: ['1', '2'],
     id: 1
 };
-// literal types
+// LITERAL TYPES
 function fetchWithAuth1(url, method) {
     return 1;
 }
@@ -196,3 +193,62 @@ var PaymentStatus;
     PaymentStatus["Success"] = "success";
     PaymentStatus["Failed"] = "failed";
 })(PaymentStatus || (PaymentStatus = {}));
+const n = () => {
+    return false;
+};
+const m = () => { };
+// UNKNOWN - we don't know what's inside a variable
+// unknown is not any
+let input;
+function run(i) {
+    if (typeof i == 'number') {
+        i++;
+    }
+    else {
+        i;
+    }
+}
+run(input);
+function getData() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            yield fetch('');
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                console.log(error.message);
+            }
+        }
+    });
+}
+// NEVER
+function generateError(message) {
+    throw new Error(message);
+}
+function isString(x) {
+    if (typeof x === 'string') {
+        return true;
+    }
+    else if (typeof x === 'number') {
+        return false;
+    }
+    generateError('abcdefg');
+}
+// CASTING
+// overriding types
+let a = 5;
+let d = a.toString();
+let g = new String(a).valueOf();
+let e = 'fjfjf';
+let f = parseInt(e);
+const user3 = {
+    name: 'di',
+    email: 'di@gmail.com',
+    login: 'dii',
+};
+function userToAdmin(user3) {
+    return {
+        name: user3.name,
+        role: 1
+    };
+}
