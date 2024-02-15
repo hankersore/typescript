@@ -410,3 +410,20 @@ function userToAdmin(user3: SomeUser): Admin {
         role: 1
     }
 }
+
+// TYPE GUARD
+
+let myVar: unknown;
+
+myVar = "abcdefg";
+
+function isString1(value: unknown): value is string {
+    return typeof value === "string";
+}
+
+if (isString1(myVar)) {
+    console.log(myVar.toUpperCase()); 
+} else {
+    console.log("myVariable is not a string.");
+}
+
