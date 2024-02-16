@@ -427,3 +427,88 @@ if (isString1(myVar)) {
     console.log("myVariable is not a string.");
 }
 
+// CLASSES AND CONSTUCTOR
+class User4 {
+    name: string;
+    age: number;
+    constructor();
+    constructor(name:string, age:number);
+    constructor(age:number);
+    constructor(name:string)
+    constructor(ageOrName?:string | number, age?: number) {
+        if (typeof ageOrName === 'string') {
+            this.name = ageOrName;
+        } 
+        else if (typeof ageOrName === 'number') {
+            this.age = ageOrName;
+        }
+        if (typeof age === 'number') {
+            this.age = age;
+        } 
+    }
+}
+
+const user4 = new User4('Dilshoda');
+const user5 = new User4();
+const user6 = new User4(20);
+const user7 = new User4('Dilshoda', 20);
+
+// METHODS
+// method is a func inside of class and does something. unlike constructor it can return something
+
+enum PaymentStatus {
+    Holded,
+    Processed,
+    Reversed
+}
+
+class Payment {
+    id: number;
+    status: PaymentStatus;
+    createdAt: Date;
+    updateAt: Date;
+
+    constructor(id: number) {
+        this.id = id;
+        this.createdAt = new Date();
+        this.status = PaymentStatus.Holded;
+    }
+
+    getPaymentLifeTime(): number {
+        return new Date().getTime() - this.createdAt.getTime();
+    }
+
+    unholdPayment(): void {
+        if (this.status == PaymentStatus.Processed) {
+            throw new Error('payment cannot be refunded!');
+        }
+        this.status = PaymentStatus.Reversed;
+        this.updateAt = new Date();
+    }
+}
+
+const payment = new Payment(1);
+payment.unholdPayment();
+console.log(payment);
+const time = payment.getPaymentLifeTime();
+console.log(time);
+
+// METHODS OVERLOAD
+
+// class User1 {
+//     skills: string[];
+
+//     addSkill(skill: string): void;
+//     addSkill(skills: string[]): void;
+//     addSkill (skillOrSkills? : string | string[]): void {
+//         if (typeof skillOrSkills == 'string') {
+//             this.skills.push(skillOrSkills);
+//         }
+//         else {
+//            this.skills.concat(skillOrSkills);
+//         }
+//     }
+// }
+
+
+

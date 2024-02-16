@@ -264,3 +264,64 @@ if (isString1(myVar)) {
 else {
     console.log("myVariable is not a string.");
 }
+// CLASSES AND CONSTUCTOR
+class User4 {
+    constructor(ageOrName, age) {
+        if (typeof ageOrName === 'string') {
+            this.name = ageOrName;
+        }
+        else if (typeof ageOrName === 'number') {
+            this.age = ageOrName;
+        }
+        if (typeof age === 'number') {
+            this.age = age;
+        }
+    }
+}
+const user4 = new User4('Dilshoda');
+const user5 = new User4();
+const user6 = new User4(20);
+const user7 = new User4('Dilshoda', 20);
+// METHODS
+// method is a func inside of class and does something. unlike constructor it can return something
+(function (PaymentStatus) {
+    PaymentStatus[PaymentStatus["Holded"] = 0] = "Holded";
+    PaymentStatus[PaymentStatus["Processed"] = 1] = "Processed";
+    PaymentStatus[PaymentStatus["Reversed"] = 2] = "Reversed";
+})(PaymentStatus || (PaymentStatus = {}));
+class Payment {
+    constructor(id) {
+        this.id = id;
+        this.createdAt = new Date();
+        this.status = PaymentStatus.Holded;
+    }
+    getPaymentLifeTime() {
+        return new Date().getTime() - this.createdAt.getTime();
+    }
+    unholdPayment() {
+        if (this.status == PaymentStatus.Processed) {
+            throw new Error('payment cannot be refunded!');
+        }
+        this.status = PaymentStatus.Reversed;
+        this.updateAt = new Date();
+    }
+}
+const payment = new Payment(1);
+payment.unholdPayment();
+console.log(payment);
+const time = payment.getPaymentLifeTime();
+console.log(time);
+// METHODS OVERLOAD
+// class User1 {
+//     skills: string[];
+//     addSkill(skill: string): void;
+//     addSkill(skills: string[]): void;
+//     addSkill (skillOrSkills? : string | string[]): void {
+//         if (typeof skillOrSkills == 'string') {
+//             this.skills.push(skillOrSkills);
+//         }
+//         else {
+//            this.skills.concat(skillOrSkills);
+//         }
+//     }
+// }
