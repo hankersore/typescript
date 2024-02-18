@@ -66,3 +66,19 @@ function sum(input) {
     }
 }
 console.log(sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]));
+// 7. We need a function that can transform a string into a number.
+function stringToNumber(str) {
+    return +str;
+}
+// 8. Write a function which converts the input string to uppercase.
+function makeUpperCase(str) {
+    return str.toUpperCase();
+}
+// 9. You are given two interior angles (in degrees) of a triangle.Write a function to return the 3rd.
+const otherAngle = (a, b) => {
+    return 180 - a - b;
+};
+// 10. Implement a function which convert the given boolean value into its string representation.
+const booleanToString = (b) => {
+    return `${b}`;
+};
