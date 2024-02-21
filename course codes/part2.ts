@@ -103,3 +103,37 @@ class HttpError extends Error {
         this.code = code ?? 500;
     }
 }
+
+class User2 {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+}
+
+class UserList {
+    users: User[];
+
+    push(u: User) {
+        this.users.push(u);
+    }
+}
+
+class Payment1 {
+    date: Date;
+}
+
+class UserWithPayment extends Payment {
+    name: string;
+}
+
+class UserWithPayment2 {
+    user: User2;
+    payment: Payment1;
+
+    constructor(user: User2, payment: Payment1) {
+        this.payment = payment;
+        this.user = user;
+    }
+}
