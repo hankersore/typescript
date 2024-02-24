@@ -91,3 +91,21 @@ class UserWithPayment2 {
         this.user = user;
     }
 }
+function parseLocation(arg1, arg2) {
+    if (typeof arg1 === 'object') {
+        return { long: arg1.long,
+            lat: arg1.lat };
+    }
+    else if (typeof arg1 === 'string' && typeof arg2 === 'string') {
+        return { long: arg1,
+            lat: arg2 };
+    }
+    else if (typeof arg1 === 'string') {
+        return { long: arg1,
+            lat: arg1 };
+    }
+    else {
+        throw new Error("");
+    }
+}
+console.log(parseLocation('111'));

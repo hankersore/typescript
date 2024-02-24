@@ -137,3 +137,46 @@ class UserWithPayment2 {
         this.user = user;
     }
 }
+
+interface ILocation {
+    long: string,
+    lat: string,
+}
+
+function parseLocation (arg1: unknown): ILocation;
+function parseLocation (arg1: string, arg2: string): ILocation;
+function parseLocation (arg1, arg2?) {
+    if (typeof arg1 === 'object') {
+        return {long: arg1.long,
+        lat: arg1.lat}
+    }
+    else if (typeof arg1 === 'string' && typeof arg2 === 'string') {
+        return {long: arg1,
+        lat: arg2}
+    }
+    else if (typeof arg1 === 'string') {
+        return {long: arg1,
+        lat: arg1}
+    }
+    else {
+        throw new Error("provide arg");
+    }
+}
+
+console.log(parseLocation('111'));
+
+
+interface ICreateStudent {
+    id: string;
+    name: string;
+    age: number;
+}
+
+type NewStudent = Omit<ICreateStudent, 'id'>;
+
+type UpdateStudent = Partial<ICreateStudent>;
+
+type PickStudent = Pick<ICreateStudent, 'id'|'age'>;
+
+type RequiredStudent = Required<ICreateStudent>;
+
